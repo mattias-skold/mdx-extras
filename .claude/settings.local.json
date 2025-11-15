@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(prp-workflow)",
+      "WebSearch",
+      "Bash(npm info:*)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm -r exec tsc:*)",
+      "Bash(pnpm type-check:*)",
+      "Bash(pnpm exec eslint:*)",
+      "Bash(pnpm --filter @mdexitor/source-preview-plugin exec eslint:*)",
+      "Bash(pnpm --filter @mdexitor/source-preview-plugin build:*)",
+      "Bash(test:*)",
+      "Bash(pnpm list:*)",
+      "Bash(pnpm exec prettier:*)",
+      "Bash(pnpm format:*)",
+      "Bash(tree:*)",
+      "Bash(pnpm lint:*)",
+      "Bash(pnpm format:check:*)",
+      "Bash(pnpm --filter @mdexitor/source-preview-plugin lint:*)",
+      "Bash(pnpm --filter @mdexitor/source-preview-plugin format:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

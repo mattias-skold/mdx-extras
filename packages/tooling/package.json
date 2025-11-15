@@ -1,0 +1,21 @@
+{
+  "name": "@mdexitor/tooling",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./tsconfig.base.json": "./tsconfig.base.json",
+    "./eslint.config.mjs": "./eslint.config.mjs",
+    "./prettier.config.mjs": "./prettier.config.mjs",
+    "./vite.config.base": "./vite.config.base.ts"
+  },
+  "dependencies": {
+    "@eslint/js": "^9.39.1",
+    "eslint": "^9.39.1",
+    "typescript-eslint": "^8.46.4",
+    "prettier": "^3.6.2",
+    "vite": "^7.2.2",
+    "vite-plugin-dts": "^4.5.4",
+    "typescript": "^5.9.3"
+  }
+}
