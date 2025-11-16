@@ -31,7 +31,8 @@
       "Bash(gh run view:*)",
       "Bash(gh pr list:*)",
       "Bash(gh workflow:*)",
-      "Bash(gh run list:*)"
+      "Bash(gh run list:*)",
+      "Bash(git remote get-url:*)"
     ],
     "deny": [],
     "ask": []

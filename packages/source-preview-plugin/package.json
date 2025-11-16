@@ -1,8 +1,29 @@
 {
   "name": "@mdxeditor/source-preview-plugin",
   "version": "0.1.0",
+  "description": "MDXEditor plugin for displaying source code alongside preview in a side-by-side view",
   "type": "module",
   "license": "MIT",
+  "author": "Petyo Ivanov",
+  "homepage": "https://github.com/mdx-editor/extras/tree/main/packages/source-preview-plugin#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mdx-editor/extras.git",
+    "directory": "packages/source-preview-plugin"
+  },
+  "bugs": {
+    "url": "https://github.com/mdx-editor/extras/issues"
+  },
+  "keywords": [
+    "mdxeditor",
+    "plugin",
+    "source",
+    "preview",
+    "markdown",
+    "editor",
+    "react",
+    "lexical"
+  ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
