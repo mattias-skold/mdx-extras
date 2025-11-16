@@ -1,15 +1,18 @@
 import type { Story } from "@ladle/react";
-import { MDXEditorMethods, MDXEditor, toolbarPlugin, DiffSourceToggleWrapper } from "@mdxeditor/editor";
+import { MDXEditorMethods, MDXEditor, toolbarPlugin, DiffSourceToggleWrapper, listsPlugin, headingsPlugin } from "@mdxeditor/editor";
 import '@mdxeditor/editor/style.css'
 import { useRef } from "react";
 import { sourceWithPreviewPlugin } from "..";
 import Editor from '@monaco-editor/react';
+import * as monaco from 'monaco-editor';
+
 
 /**
  * Basic example story for the Source Preview Plugin
  */
 export const Welcome: Story = () => {
   const ref = useRef<MDXEditorMethods>(null)
+  const monacoRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
   return (
     <div className="App">
       <MDXEditor
@@ -19,7 +22,10 @@ export const Welcome: Story = () => {
         }}
         markdown="Hello world"
         plugins={[
+          listsPlugin(),
+          headingsPlugin(),
           sourceWithPreviewPlugin({
+            viewMode: 'source',
             editor: ({defaultValue, onChange}) => (
               <div style={{paddingTop: '2rem'}}>
               <Editor
@@ -29,6 +35,9 @@ export const Welcome: Story = () => {
                 defaultValue={defaultValue}
                 onChange={(value) => {
                   onChange(value ?? '')
+                }}
+                onMount={(editor) => {
+                  monacoRef.current = editor;
                 }}
                 options={{
                   minimap: { enabled: false },
@@ -43,7 +52,34 @@ export const Welcome: Story = () => {
             )
           }),
           toolbarPlugin({
-            toolbarContents: () => <DiffSourceToggleWrapper>Hi!</DiffSourceToggleWrapper>
+            toolbarContents: () => <DiffSourceToggleWrapper options={['source', 'rich-text']} SourceToolbar={
+              <div>
+                <button onClick={() => {
+                  const editor = monacoRef.current;
+                  if (!editor) return;
+
+                  const selection = editor.getSelection();
+                  if (!selection) return;
+
+                  const selectedText = editor.getModel()?.getValueInRange(selection);
+                  if (!selectedText) return;
+
+                  const boldText = `**${selectedText}**`;
+                  editor.executeEdits('bold-button', [{
+                    range: selection,
+                    text: boldText
+                  }]);
+
+                  // Move cursor after the bold text
+                  const newPosition = {
+                    lineNumber: selection.endLineNumber,
+                    column: selection.endColumn + 4
+                  };
+                  editor.setPosition(newPosition);
+                  editor.focus();
+                }}>Bold!</button>
+              </div>
+            }>Hi!</DiffSourceToggleWrapper>
           })
         ]}
       />

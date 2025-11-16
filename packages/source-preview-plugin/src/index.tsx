@@ -1,5 +1,5 @@
 import { addEditorWrapper$, realmPlugin, rootEditor$, ViewMode, viewMode$ } from '@mdxeditor/editor'
-import { withLatestFrom } from '@mdxeditor/gurx'
+import { filter, withLatestFrom } from '@mdxeditor/gurx'
 import { sourceEditor$, SourceEditor, SourceWithPreviewWrapper } from './SourceWithPreviewWrapper'
 export type { SourceEditor, SourceEditorProps } from './SourceWithPreviewWrapper'
 
@@ -23,7 +23,13 @@ export const sourceWithPreviewPlugin = realmPlugin<{
       editor?.setEditable(mode !== 'source')
     })
 
-
+    // make the initial editor non-editable if starting in source mode
+    if (params?.viewMode === 'source') {
+      const unsub = r.sub(r.pipe(rootEditor$, filter(editor => editor !== null)), (editor) => {
+        editor?.setEditable(false)
+        unsub()
+      })
+    }
 
     r.pubIn({
       [viewMode$]: params?.viewMode ?? 'rich-text',
