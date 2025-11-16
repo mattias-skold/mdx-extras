@@ -24,7 +24,8 @@
       "WebFetch(domain:www.npmjs.com)",
       "Bash(pnpm add:*)",
       "Bash(pnpm --filter @mdexitor/source-preview-plugin format:check:*)",
-      "Bash(pnpm build:*)"
+      "Bash(pnpm build:*)",
+      "Bash(pnpm exec lefthook:*)"
     ],
     "deny": [],
     "ask": []

@@ -9,9 +9,11 @@
     "lint": "pnpm -r run lint",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\"",
-    "type-check": "pnpm -r run type-check"
+    "type-check": "pnpm -r run type-check",
+    "prepare": "lefthook install"
   },
   "devDependencies": {
+    "lefthook": "^2.0.4",
     "prettier": "^3.6.2"
   }
 }

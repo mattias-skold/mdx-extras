@@ -1,0 +1,20 @@
+# Lefthook configuration for MDXEditor plugins monorepo
+# https://github.com/evilmartians/lefthook
+
+pre-commit:
+  parallel: true
+  commands:
+    type-check:
+      glob: "*.{ts,tsx}"
+      run: pnpm type-check
+    lint:
+      glob: "*.{ts,tsx,js,jsx}"
+      run: pnpm lint
+    format-check:
+      glob: "*.{ts,tsx,js,jsx,json,md}"
+      run: pnpm format:check
+
+pre-push:
+  commands:
+    build:
+      run: pnpm build
