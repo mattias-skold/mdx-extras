@@ -26,7 +26,7 @@ export const sourceEditor$ = Cell<SourceEditor>(() => {
   return (
     <div>
       Pass <code>editor</code> parameter to <code>sourceWithPreviewPlugin</code>{" "}
-      to enable source editing.{" "}
+      to enable source editing.
     </div>
   );
 });

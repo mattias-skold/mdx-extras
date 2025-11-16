@@ -25,7 +25,9 @@
       "Bash(pnpm add:*)",
       "Bash(pnpm --filter @mdexitor/source-preview-plugin format:check:*)",
       "Bash(pnpm build:*)",
-      "Bash(pnpm exec lefthook:*)"
+      "Bash(pnpm exec lefthook:*)",
+      "Bash(pnpm changeset:*)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []

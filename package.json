@@ -10,9 +10,13 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "type-check": "pnpm -r run type-check",
-    "prepare": "lefthook install"
+    "prepare": "lefthook install",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "pnpm build && changeset publish --provenance"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.7",
     "lefthook": "^2.0.4",
     "prettier": "^3.6.2"
   }
