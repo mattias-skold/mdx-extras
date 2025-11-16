@@ -34,7 +34,12 @@
       "Bash(gh run list:*)",
       "Bash(git remote get-url:*)",
       "Bash(mkdir:*)",
-      "Bash(prettier:*)"
+      "Bash(prettier:*)",
+      "WebFetch(domain:lexical.dev)",
+      "WebFetch(domain:github.com)",
+      "Bash(pnpm info:*)",
+      "mcp__serena__find_file",
+      "mcp__serena__list_dir"
     ],
     "deny": [],
     "ask": []

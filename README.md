@@ -23,6 +23,37 @@ npm install @mdxeditor/source-preview-plugin
 pnpm add @mdxeditor/source-preview-plugin
 ```
 
+### [@mdxeditor/typeahead-plugin](./packages/typeahead-plugin)
+
+An MDXEditor plugin that provides flexible typeahead autocomplete functionality. Supports multiple simultaneous typeahead types (mentions, hashtags, etc.) with customizable trigger characters, data sources, and rendering.
+
+**Features:**
+
+- Multiple typeahead types in a single editor
+- Custom trigger characters (@, #, etc.)
+- Async data source support
+- Customizable rendering for menu items and inline display
+- Persists to markdown as text directives
+
+**Installation:**
+
+```bash
+npm install @mdxeditor/typeahead-plugin
+# or
+pnpm add @mdxeditor/typeahead-plugin
+```
+
+### [@mdxeditor/tooling](./packages/tooling)
+
+Shared development tooling and configuration for MDXEditor packages. Provides consistent ESLint, TypeScript, Prettier, and Vite configurations across all packages.
+
+**Includes:**
+
+- Strict TypeScript configuration
+- ESLint with typescript-eslint strictTypeChecked rules
+- Prettier formatting configuration
+- Vite library build configuration with TypeScript declarations
+
 ## Development
 
 This is a pnpm workspace monorepo. Make sure you have [pnpm](https://pnpm.io/) installed.
