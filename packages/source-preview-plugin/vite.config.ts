@@ -6,7 +6,7 @@ export default mergeConfig(
   defineConfig({
     build: {
       lib: {
-        entry: "./src/index.ts",
+        entry: "./src/index.tsx",
         name: "SourcePreviewPlugin",
         fileName: "index",
       },

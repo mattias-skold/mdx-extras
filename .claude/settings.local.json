@@ -18,7 +18,13 @@
       "Bash(pnpm lint:*)",
       "Bash(pnpm format:check:*)",
       "Bash(pnpm --filter @mdexitor/source-preview-plugin lint:*)",
-      "Bash(pnpm --filter @mdexitor/source-preview-plugin format:*)"
+      "Bash(pnpm --filter @mdexitor/source-preview-plugin format:*)",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__get-library-docs",
+      "WebFetch(domain:www.npmjs.com)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm --filter @mdexitor/source-preview-plugin format:check:*)",
+      "Bash(pnpm build:*)"
     ],
     "deny": [],
     "ask": []
