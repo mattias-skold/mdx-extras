@@ -1,5 +1,11 @@
 # @mdxeditor/source-preview-plugin
 
+## 0.1.2
+
+### Patch Changes
+
+- ba3fad6: improve automation
+
 ## 0.1.1
 
 ### Patch Changes
