@@ -32,7 +32,9 @@
       "Bash(gh pr list:*)",
       "Bash(gh workflow:*)",
       "Bash(gh run list:*)",
-      "Bash(git remote get-url:*)"
+      "Bash(git remote get-url:*)",
+      "Bash(mkdir:*)",
+      "Bash(prettier:*)"
     ],
     "deny": [],
     "ask": []
