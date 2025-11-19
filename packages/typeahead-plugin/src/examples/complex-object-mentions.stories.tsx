@@ -4,13 +4,13 @@ import "@mdxeditor/editor/style.css";
 import { TypeaheadConfig, typeaheadPlugin } from "..";
 import "../styles.css"; // Import default styles for this example
 
-interface UserObjec {
+interface UserObject {
   name: string;
   id: string;
   email: string;
 }
 
-const mockUsers: UserObjec[] = [
+const mockUsers: UserObject[] = [
   { name: "alice", id: "1", email: "alice@mdxEditor.dev" },
   { name: "bob", id: "2", email: "bob@mdxEditor.dev" },
   { name: "charlie", id: "3", email: "charlie@mdxEditor.dev" },
@@ -21,10 +21,10 @@ const mockUsers: UserObjec[] = [
   { name: "henry", id: "8", email: "henry@mdxEditor.dev" },
 ];
 
-const UserMention: TypeaheadConfig<UserObjec> = {
+const UserMention: TypeaheadConfig<UserObject> = {
   type: "mention",
   trigger: "@",
-  searchCallback: (query: string) => {
+  searchCallback: (query) => {
     // Filter users based on query
     return Promise.resolve(
       mockUsers.filter((user) =>
@@ -32,7 +32,7 @@ const UserMention: TypeaheadConfig<UserObjec> = {
       ),
     );
   },
-  renderMenuItem: (user: UserObjec) => (
+  renderMenuItem: (user) => (
     <div style={{ display: "flex", alignItems: "center" }}>
       <span
         style={{
@@ -54,7 +54,7 @@ const UserMention: TypeaheadConfig<UserObjec> = {
       <span>{user.name}</span>
     </div>
   ),
-  convertToId: (o: UserObjec) => {
+  convertToId: (o) => {
     return o.email;
   },
   renderEditor: () => {

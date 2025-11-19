@@ -58,18 +58,18 @@ function checkForTriggerMatch(
   return null;
 }
 
-class TypeaheadOption extends MenuOption {
-  value: string;
+class TypeaheadOption<T> extends MenuOption {
+  value: T;
   displayElement: JSX.Element;
 
-  constructor(value: string, displayElement: JSX.Element) {
-    super(value);
+  constructor(key: string, value: T, displayElement: JSX.Element) {
+    super(key);
     this.value = value;
     this.displayElement = displayElement;
   }
 }
 
-function TypeaheadMenuItem({
+function TypeaheadMenuItem<T>({
   index,
   isSelected,
   onClick,
@@ -81,8 +81,8 @@ function TypeaheadMenuItem({
   isSelected: boolean;
   onClick: () => void;
   onMouseEnter: () => void;
-  option: TypeaheadOption;
-  config: TypeaheadConfig<any>;
+  option: TypeaheadOption<T>;
+  config: TypeaheadConfig<T>;
 }) {
   const content = option.displayElement;
 
@@ -142,11 +142,11 @@ function TypeaheadMenuItem({
   );
 }
 
-function useTypeaheadSearch(
-  config: TypeaheadConfig<any>,
+function useTypeaheadSearch<T>(
+  config: TypeaheadConfig<T>,
   queryString: string | null,
-): string[] {
-  const [results, setResults] = useState<string[]>([]);
+): T[] {
+  const [results, setResults] = useState<T[]>([]);
 
   useEffect(() => {
     if (queryString == null) {
@@ -159,12 +159,12 @@ function useTypeaheadSearch(
   return results;
 }
 
-function SingleTypeaheadInstance({
+function SingleTypeaheadInstance<T>({
   config,
   allConfigs,
 }: {
-  config: TypeaheadConfig<any>;
-  allConfigs: TypeaheadConfig<any>[];
+  config: TypeaheadConfig<T>;
+  allConfigs: TypeaheadConfig<T>[];
 }) {
   const [editor] = useLexicalComposerContext();
   const [queryString, setQueryString] = useState<string | null>(null);
@@ -206,24 +206,42 @@ function SingleTypeaheadInstance({
 
   const options = useMemo(
     () =>
-      results
-        .slice(0, config.maxResults ?? 5)
-        .map((item) => new TypeaheadOption(item, config.renderMenuItem(item))),
+      results.slice(0, config.maxResults ?? 5).map((item) => {
+        const key: unknown =
+          config.convertToId == null ? item : config.convertToId(item);
+
+        if (typeof key !== "string") {
+          throw new Error(
+            `typeaheadPlugin: convertToId must return a string key for non-primitive items.`,
+          );
+        }
+
+        return new TypeaheadOption(key, item, config.renderMenuItem(item));
+      }),
     [results, config],
   );
 
   const onSelectOption = useCallback(
     (
-      selectedOption: TypeaheadOption,
+      selectedOption: TypeaheadOption<T>,
       nodeToReplace: TextNode | null,
       closeMenu: () => void,
     ) => {
       editor.update(() => {
-        const node = $createTypeaheadNode(
-          config.type,
+        const content =
           config.convertToId == null
             ? selectedOption.value
-            : config.convertToId(selectedOption.value),
+            : config.convertToId(selectedOption.value);
+
+        if (typeof content !== "string") {
+          throw new Error(
+            `typeaheadPlugin: convertToId must return a string key for non-primitive items.`,
+          );
+        }
+
+        const node = $createTypeaheadNode(
+          config.type,
+          content,
           config.trigger,
           undefined,
           config.nodeClassName,
@@ -239,7 +257,7 @@ function SingleTypeaheadInstance({
   );
 
   return (
-    <LexicalTypeaheadMenuPlugin<TypeaheadOption>
+    <LexicalTypeaheadMenuPlugin<TypeaheadOption<T>>
       onQueryChange={setQueryString}
       onSelectOption={onSelectOption}
       triggerFn={checkForMatch}
@@ -303,6 +321,7 @@ function SingleTypeaheadInstance({
 export function TypeaheadPlugin({
   configs,
 }: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   configs: TypeaheadConfig<any>[];
 }): JSX.Element {
   return (

@@ -1,10 +1,10 @@
-import config from '@mdxeditor/tooling/eslint.config.mjs';
+import config from "@mdxeditor/tooling/eslint.config.mjs";
 
 export default [
   ...config,
   {
     rules: {
-      '@typescript-eslint/no-explicit-any': 'off',
+      // '@typescript-eslint/no-explicit-any': 'off',
     },
   },
 ];

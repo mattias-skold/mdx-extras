@@ -117,5 +117,6 @@ export interface TypeaheadPluginParams {
    * Array of typeahead configurations.
    * Each config.type must be unique.
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   configs: TypeaheadConfig<any>[];
 }
