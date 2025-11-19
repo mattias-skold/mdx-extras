@@ -1,7 +1,7 @@
 import type { Story } from "@ladle/react";
 import { MDXEditor } from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
-import { TypeaheadConfig, typeaheadPlugin } from "..";
+import { TypeaheadDescriptor, typeaheadPlugin } from "..";
 import "../styles.css"; // Import default styles for this example
 
 const mockUsers = [
@@ -19,7 +19,7 @@ const mockUsers = [
  * Basic mentions example with @ trigger
  */
 
-const StringMention: TypeaheadConfig<string> = {
+const StringMention: TypeaheadDescriptor<string> = {
   type: "mention",
   trigger: "@",
   searchCallback: (query: string) => {

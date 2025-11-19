@@ -10,7 +10,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import * as ReactDOM from "react-dom";
 
 import { $createTypeaheadNode } from "./TypeaheadNode";
-import type { TypeaheadConfig } from "./types";
+import type { TypeaheadDescriptor } from "./types";
 
 const PUNCTUATION =
   "\\.,\\+\\*\\?\\$\\@\\|#{}\\(\\)\\^\\-\\[\\]\\\\/!%'\"~=<>_:;";
@@ -82,7 +82,7 @@ function TypeaheadMenuItem<T>({
   onClick: () => void;
   onMouseEnter: () => void;
   option: TypeaheadOption<T>;
-  config: TypeaheadConfig<T>;
+  config: TypeaheadDescriptor<T>;
 }) {
   const content = option.displayElement;
 
@@ -143,7 +143,7 @@ function TypeaheadMenuItem<T>({
 }
 
 function useTypeaheadSearch<T>(
-  config: TypeaheadConfig<T>,
+  config: TypeaheadDescriptor<T>,
   queryString: string | null,
 ): T[] {
   const [results, setResults] = useState<T[]>([]);
@@ -163,8 +163,8 @@ function SingleTypeaheadInstance<T>({
   config,
   allConfigs,
 }: {
-  config: TypeaheadConfig<T>;
-  allConfigs: TypeaheadConfig<T>[];
+  config: TypeaheadDescriptor<T>;
+  allConfigs: TypeaheadDescriptor<T>[];
 }) {
   const [editor] = useLexicalComposerContext();
   const [queryString, setQueryString] = useState<string | null>(null);
@@ -322,7 +322,7 @@ export function TypeaheadPlugin({
   configs,
 }: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  configs: TypeaheadConfig<any>[];
+  configs: TypeaheadDescriptor<any>[];
 }): JSX.Element {
   return (
     <>

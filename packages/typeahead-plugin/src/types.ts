@@ -29,7 +29,7 @@ export interface MenuItemWrapperProps {
 /**
  * Configuration for a single typeahead type (e.g., mentions, hashtags)
  */
-export interface TypeaheadConfig<T> {
+export interface TypeaheadDescriptor<T> {
   /**
    * Unique identifier for this typeahead type. It's used for the text directive name (e.g., :mention[...], :hashtag[...])
    *
@@ -118,5 +118,5 @@ export interface TypeaheadPluginParams {
    * Each config.type must be unique.
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  configs: TypeaheadConfig<any>[];
+  configs: TypeaheadDescriptor<any>[];
 }

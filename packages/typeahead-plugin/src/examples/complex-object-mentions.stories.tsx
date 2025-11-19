@@ -1,7 +1,7 @@
 import type { Story } from "@ladle/react";
 import { MDXEditor } from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
-import { TypeaheadConfig, typeaheadPlugin } from "..";
+import { TypeaheadDescriptor, typeaheadPlugin } from "..";
 import "../styles.css"; // Import default styles for this example
 
 interface UserObject {
@@ -21,7 +21,7 @@ const mockUsers: UserObject[] = [
   { name: "henry", id: "8", email: "henry@mdxEditor.dev" },
 ];
 
-const UserMention: TypeaheadConfig<UserObject> = {
+const UserMention: TypeaheadDescriptor<UserObject> = {
   type: "mention",
   trigger: "@",
   searchCallback: (query) => {
