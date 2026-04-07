@@ -1,16 +1,32 @@
 import type { Story } from "@ladle/react";
 import {
+  BlockTypeSelect,
+  BoldItalicUnderlineToggles,
   codeBlockPlugin,
   codeMirrorPlugin,
+  CodeToggle,
+  CreateLink,
   DiffSourceToggleWrapper,
   headingsPlugin,
+  HighlightToggle,
+  InsertAdmonition,
+  InsertCodeBlock,
+  InsertFrontmatter,
+  InsertImage,
+  InsertSandpack,
+  InsertTable,
+  InsertThematicBreak,
   linkDialogPlugin,
   linkPlugin,
   listsPlugin,
+  ListsToggle,
   MDXEditor,
   MDXEditorMethods,
+  Separator,
+  StrikeThroughSupSubToggles,
   thematicBreakPlugin,
   toolbarPlugin,
+  UndoRedo,
 } from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
 import * as monaco from "monaco-editor";
@@ -114,7 +130,38 @@ export const Welcome: Story = () => {
                   </div>
                 }
               >
-                Hi!
+                <>
+                  <UndoRedo />
+                  <Separator />
+                  <BoldItalicUnderlineToggles />
+                  <CodeToggle />
+                  <HighlightToggle />
+                  <Separator />
+                  <StrikeThroughSupSubToggles />
+                  <Separator />
+                  <ListsToggle />
+                  <Separator />
+
+                  <BlockTypeSelect />
+
+                  <Separator />
+
+                  <CreateLink />
+                  <InsertImage />
+
+                  <Separator />
+
+                  <InsertTable />
+                  <InsertThematicBreak />
+
+                  <Separator />
+                  <InsertCodeBlock />
+                  <InsertSandpack />
+                  <InsertAdmonition />
+
+                  <Separator />
+                  <InsertFrontmatter />
+                </>
               </DiffSourceToggleWrapper>
             ),
           }),
